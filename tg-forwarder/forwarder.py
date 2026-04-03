@@ -2,6 +2,7 @@ import asyncio
 import base64
 import os
 
+import gzip
 from telethon import TelegramClient, events
 
 API_ID    = 28244341
@@ -12,7 +13,7 @@ DEST_ID   = 1026720092
 SESSION_B64 = os.environ.get('SESSION_B64', '')
 if SESSION_B64:
         with open('ricarroh_forwarder.session', 'wb') as f:
-                    f.write(base64.b64decode(SESSION_B64))
+                            f.write(gzip.decompress(base64.b64decode(SESSION_B64)))
                 print("Session file written")
 
 async def main():
